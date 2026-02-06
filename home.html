@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dobbr | Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-body">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <h1 class="brand">Dobbr</h1>
+
+    <!-- SEARCH BAR -->
+    <input 
+      type="text" 
+      class="search-bar" 
+      placeholder="Search for food, places, or cuisines"
+    >
+
+    <div class="nav-actions">
+      <span class="cart">🛒 Cart (3)</span>
+      <button class="profile-btn" onclick="toggleProfile()">Profile</button>
+      <button class="logout" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- PROFILE PANEL -->
+  <div id="profilePanel" class="profile-panel">
+    <h2>Your Profile</h2>
+
+    <div class="profile-card">
+      <h3>📦 Order History</h3>
+      <p>Domino’s<br>KFC<br>McDonald’s</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>🎟 Coupons</h3>
+      <p><br>DOB500</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>⭐ Reward Points</h3>
+      <p>320</p>
+    </div>
+  </div>
+
+  <!-- RESTAURANTS -->
+  <section class="restaurants">
+    <h2>Restaurants Near You</h2>
+
+    <div class="restaurant-grid">
+
+      <!-- Domino's -->
+      <div class="restaurant-card" onclick="openMenu('dominos')">
+        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65">
+        <h3>Domino’s</h3>
+        <p>Pizza • ₹300</p>
+      </div>
+
+      
+
+      <!-- McD -->
+      <div class="restaurant-card" onclick="openMenu('mcd')">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+        <h3>McDonald’s</h3>
+        <p>Burgers • ₹250</p>
+      </div>
+
+      <!-- Subway -->
+      <div class="restaurant-card" onclick="openMenu('subway')">
+        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
+        <h3>Subway</h3>
+        <p>Healthy • ₹200</p>
+      </div>
+
+      <!-- Burger King -->
+      <div class="restaurant-card" onclick="openMenu('bk')">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+        <h3>Burger King</h3>
+        <p>Burgers • ₹300</p>
+      </div>
+
+      <!-- Starbucks -->
+      <div class="restaurant-card" onclick="openMenu('starbucks')">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+        <h3>Starbucks</h3>
+        <p>Coffee • ₹280</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MENU PANEL -->
+  <section id="menuPanel" class="menu-panel">
+    <h2 id="menuTitle"></h2>
+    <ul id="menuItems"></ul>
+    <button onclick="closeMenu()">Close</button>
+  </section>
+
+  <!-- GROUP ORDER BAR -->
+  <div class="bottom-action-bar">
+  <div class="group-order">
+    👥 Order as a Group
+  </div>
+  <div class="build-meal">
+    🍽 Build Your Own Meal
+  </div>
+</div>
+
+
+  <script>
+    const menus = {
+      dominos: ["Margherita", "Farmhouse", "Pepperoni"],
+      kfc: ["Hot & Crispy", "Zinger Burger", "Popcorn Chicken"],
+      mcd: ["McAloo Tikki", "McChicken", "French Fries"],
+      subway: ["Veggie Delight", "Paneer Tikka", "Chicken Teriyaki"],
+      bk: ["Whopper", "Veg Burger", "Chicken Fries"],
+      starbucks: ["Cappuccino", "Cold Brew", "Muffin"]
+    };
+
+    function openMenu(name) {
+      document.getElementById("menuPanel").classList.add("show");
+      document.getElementById("menuTitle").innerText =
+        name.toUpperCase() + " MENU";
+
+      const list = document.getElementById("menuItems");
+      list.innerHTML = "";
+
+      menus[name].forEach(item => {
+        list.innerHTML += `
+          <li>
+            <span>${item}</span>
+            <button>Add</button>
+          </li>
+        `;
+      });
+    }
+
+    function closeMenu() {
+      document.getElementById("menuPanel").classList.remove("show");
+    }
+
+    function toggleProfile() {
+      document.getElementById("profilePanel").classList.toggle("show");
+    }
+
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>
