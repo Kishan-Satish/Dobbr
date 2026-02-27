@@ -1,17 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS_24.14.0'
-    }
-
     stages {
-
-        stage('Clone Repository') {
-            steps {
-                checkout scm
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
@@ -19,9 +9,9 @@ pipeline {
             }
         }
 
-        stage('Build Successful') {
+        stage('Build') {
             steps {
-                echo 'Dependencies installed successfully!'
+                bat 'npm run build'
             }
         }
 
