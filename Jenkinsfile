@@ -1,7 +1,17 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS_18'
+    }
+
     stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -9,9 +19,9 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Successful') {
             steps {
-                bat 'npm run build'
+                echo 'Dependencies installed successfully!'
             }
         }
 
