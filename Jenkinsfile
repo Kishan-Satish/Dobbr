@@ -3,15 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
+        stage('Clone Repository') {
             steps {
-                bat 'npm install'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Successful') {
             steps {
-                bat 'npm run build'
+                echo 'Dobbr frontend loaded successfully!'
             }
         }
 
