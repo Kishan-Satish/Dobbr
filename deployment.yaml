@@ -14,9 +14,11 @@ spec:
     spec:
       containers:
         - name: dobbr-container
-          image: samisundar/dobbr: latest
+          image: samisundar/dobbr:latest
           ports:
             - containerPort: 80
+
+   -------------------------------
 
 apiVersion: v1
 kind: Service
