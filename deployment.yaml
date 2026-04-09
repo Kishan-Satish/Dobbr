@@ -13,12 +13,12 @@ spec:
         app: dobbr
     spec:
       containers:
-      - name: dobbr-container
-        image: samisundar/dobbr: latest  
-        ports:
-        - containerPort: 80
+        - name: dobbr-container
+          image: samisundar/dobbr: latest
+          ports:
+            - containerPort: 80
 
-        apiVersion: v1
+apiVersion: v1
 kind: Service
 metadata:
   name: dobbr-service
@@ -31,3 +31,5 @@ spec:
       port: 80
       targetPort: 80
       nodePort: 30007
+
+
