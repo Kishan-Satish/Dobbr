@@ -1,14 +1,14 @@
-FROM python:3.10-slim
+# Use official lightweight Nginx image
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default Nginx website
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy only requirements first to leverage Docker cache
-COPY requirements.txt .
+# Copy all your project files to Nginx directory
+COPY . /usr/share/nginx/html
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Expose port 80 to access the app
+EXPOSE 80
 
-# Copy the rest of the application code
-COPY . .
-
-CMD ["python", "main.py"]
+# Run Nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
