@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dobbr-deployment
+  name: online-book-store
 spec:
   replicas: 2
   selector:
@@ -13,22 +13,20 @@ spec:
         app: dobbr
     spec:
       containers:
-        - name: dobbr-container
-          image: samisundar/dobbr:latest
-          ports:
-            - containerPort: 80
-
+      - name: dobbr
+        image: samisundar/dobbr:latest
+        ports:
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: dobbr-service
+  name: dobbr
 spec:
   type: NodePort
   selector:
     app: dobbr
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30007
+  - port: 80
+    targetPort: 3000
+    nodePort: 30007
