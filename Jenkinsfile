@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = credentials('kubeconfig') 
+    }
+
     stages {
 
         stage('Clone Repository') {
@@ -9,9 +13,20 @@ pipeline {
             }
         }
 
-        stage('Build Successful') {
+        stage('Deploy to Kubernetes') {
             steps {
-                echo 'Dobbr frontend loaded successfully!'
+                sh '''
+                kubectl apply -f deployment.yaml
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                kubectl get pods
+                kubectl get svc dobbr
+                '''
             }
         }
 
